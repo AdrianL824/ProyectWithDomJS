@@ -1,56 +1,36 @@
-( () => {
-const btn = document.querySelector('[data-form-btn]');
+import checkComplete from "../../components/checkComplete.js";
+import deleteIcon from "../../components/deleteIcon.js";
+(() => {
+    const btn = document.querySelector('[data-form-btn]');
 
-const createTask = (evento) => {
-    evento.preventDefault();
-    const input = document.querySelector('[data-form-input]');
-    const value = input.value
-    const list = document.querySelector('[data-list]');
-    const task = document.createElement('li');
-    task.classList.add('card');
-    input.value = '';
-    //backticks alt gr + }
-    
-    //Creados un contenedor de html con JS
-    const taskContent = document.createElement("div");
-    taskContent.appendChild(checkComplete());
-    const titleTask = document.createElement("span");
-    titleTask.classList.add("task");
-    titleTask.innerText = value;
-    taskContent.appendChild(titleTask);
-    
-    const content = `
+    const createTask = (event) => {
+        event.preventDefault();
+        const input = document.querySelector('[data-form-input]');
+        const value = input.value
+        const list = document.querySelector('[data-list]');
+        const task = document.createElement('li');
+        task.classList.add('card');
+        input.value = '';
+        //backticks alt gr + }
 
-    <i class="fas fa-trash-alt trashIcon icon"></i>`;
-    //task.innerHTML = content;
-    task.appendChild(taskContent);
-    list.appendChild(task);
-}
+        //Creados un contenedor de html con JS
+        const taskContent = document.createElement("div");
+        taskContent.appendChild(checkComplete());
+        const titleTask = document.createElement("span");
+        titleTask.classList.add("task");
+        titleTask.innerText = value;
+        taskContent.appendChild(titleTask);
 
-btn.addEventListener("click", createTask);
+        //task.innerHTML = content;
+        task.appendChild(taskContent);
+        task.appendChild(deleteIcon());
+        list.appendChild(task);
+    }
 
-const checkComplete = () => {
-    const i = document.createElement('i');
-    i.classList.add("far", "fa-check-square", "icon");
-    i.addEventListener("click", completeTask)
-    return i;
-}
-
-const completeTask = () =>{
-    const element = event.target;
-    element.classList.toggle('fas');
-    element.classList.toggle('completeIcon');
-    element.classList.toggle('far');
-}
-
+    btn.addEventListener("click", createTask);
 })()
 
-// const trash = () = > {
-//     <i class="fas fa-trash-alt trashIcon icon"></i>`;
-//     const e = document.createElement("i");
-//     return e;
 
-// }
 
 //------------------------------------------------
 //ideas - pruebas
